@@ -3,7 +3,7 @@
       <h2>Posts page</h2>
       <Posts></Posts>
   
-      <button v-on:click="IncreaseLike">Increase likes</button>
+      <!-- <button v-on:click="IncreaseLike">Increase likes</button> -->
       <button v-on:click="ResetLikes">Reset likes</button><br />
   
     </div>
