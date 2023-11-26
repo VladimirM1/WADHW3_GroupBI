@@ -51,7 +51,7 @@ export default {
 }
 
 .login-flex {
-  display: flex;
+  display: flexbox;
 }
 
 input {
@@ -102,7 +102,7 @@ h3 {
   margin:auto;
   margin-top: 2%;
   margin-bottom: 2%;
-  display:flex;
+  display:flexbox;
   line-height: 25px;
   font-size: 15px;
   border-radius: 10px;
