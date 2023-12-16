@@ -31,8 +31,8 @@ export default {
 * {
   font-family: sans-serif;
 }
-.contacts-flex {
-}
+/* .contacts-flex {
+} */
 
 input {
   margin-bottom: 5px;
