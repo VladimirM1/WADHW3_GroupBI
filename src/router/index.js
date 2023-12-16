@@ -33,11 +33,6 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
-  },
-  {
-    path: '/posts',
-    name: 'posts',
-    component: PostView
   }
 ]
 

@@ -19,7 +19,7 @@
 
       </small>
       <div>
-        <button @click="SignUp" class="blue-button" id="login-button" :disabled = "has_length && has_two_lowercase && has_uppercase && has_number && has_special  && has_underscore && starts_uppercase ? false: true">Sign Up</button>
+        <button @click="SignUp" class="gray-button" id="login-button" :disabled = "has_length && has_two_lowercase && has_uppercase && has_number && has_special  && has_underscore && starts_uppercase ? false: true">Sign Up</button>
       </div>
     </div>
 
@@ -57,6 +57,31 @@ export default {
     }
   },
 
+  methods: {
+    SignUp() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
+      })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            this.$router.push('/');
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log("error");
+          });
+    }
+  }
 }
 
 </script>
@@ -96,10 +121,10 @@ h3 {
   margin-top:0.8em;
   cursor:pointer;
 }
-.blue-button {
-  background-color: #4267B2;
+.gray-button {
+  background-color: gray;
   font-size: medium;
-  color: white;
+  color: black;
   border-radius: 20px;
 }
 .flex-container > div {

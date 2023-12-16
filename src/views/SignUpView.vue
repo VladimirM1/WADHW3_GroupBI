@@ -6,7 +6,6 @@
 
 
 <script>
-// @ is an alias to /src
 
 import signup from "@/components/signup";
 
