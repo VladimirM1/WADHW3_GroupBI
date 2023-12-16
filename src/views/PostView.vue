@@ -1,6 +1,7 @@
 <template>
     <div class="posts">
       <h2>Posts page</h2>
+      <button @click="Logout" style="margin-top:3em" class="gray-button">Logout</button>
       <Posts></Posts>
   
       <!-- <button v-on:click="IncreaseLike">Increase likes</button> -->
@@ -25,6 +26,23 @@
         // this.$store.commit("DecreasePrice");
         this.$store.dispatch("ResetLikesAct");
       },
+      Logout() {
+        fetch("http://localhost:3000/auth/logout", {
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+        })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              console.log('jwt removed');
+              //console.log('jwt removed:' + auth.authenticated());
+              this.$router.push("/login");
+              //location.assign("/");
+            })
+            .catch((e) => {
+              console.log(e);
+              console.log("error logout");
+            })
+      }
     },
   };
   </script>

@@ -12,10 +12,10 @@
           </div>
         </div>
         <div class = "buttons">
-          <button @click="LogIn" class="blue-button" id="login-button" type="button">Log In</button>
+          <button @click="LogIn" class="gray-button" id="login-button" type="button">Log In</button>
           <p class = "buttonTextBetween">Or</p>
           <router-link to="/signup">
-            <button class="blue-button"  id="signup-button" type="button">Sign Up</button>
+            <button class="gray-button" id="signup-button" type="button">Sign Up</button>
           </router-link>
         </div>
       </form>
@@ -27,7 +27,40 @@
 <script>
 
 export default {
-  name: "Login"
+  name: "Login",
+
+  data: function() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+
+  methods: {
+    LogIn() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
+      })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            location.assign("/");
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log("error");
+          });
+    }
+  }
 }
 
 </script>
@@ -88,7 +121,7 @@ h3 {
   cursor:pointer;
 }
 
-.blue-button {
+.gray-button {
   background-color: grey;
   font-size: medium;
   color: black;
