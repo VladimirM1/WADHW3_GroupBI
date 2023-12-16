@@ -76,7 +76,7 @@
     color: black;
     }
     button {
-    background-color: #4267B2;
+    background-color: #42b2a7;
     border: 0;
     padding: 10px 20px;
     font-size: medium;

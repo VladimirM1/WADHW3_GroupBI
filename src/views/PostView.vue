@@ -1,11 +1,14 @@
 <template>
     <div class="posts">
-      <h2>Posts page</h2>
-      <button @click="Logout" style="margin-top:3em" class="gray-button">Logout</button>
+      <!-- <h2>Posts page</h2> -->
+      <router-link to="/addPost">
+      <button style="margin-top:3em" class="button">Add post</button>
+      </router-link>
+      <button @click="Logout" style="margin-top:3em" class="button">Logout</button>
       <Posts></Posts>
   
       <!-- <button v-on:click="IncreaseLike">Increase likes</button> -->
-      <button v-on:click="ResetLikes">Reset likes</button><br />
+      <!-- <button v-on:click="ResetLikes">Reset likes</button><br /> -->
   
     </div>
   </template>
