@@ -59,6 +59,31 @@ app.get('/auth/authenticate', async(req, res) => {
     }
 });
 
+app.post('/api/posts', async(req, res) => {
+    try {
+        console.log("a post request has arrived");
+        const post = req.body;
+        const newpost = await pool.query(
+            "INSERT INTO posttable(body, date) values ($1, $2)    RETURNING*", [post.body, post.date]
+        );
+        res.json(newpost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.get('/api/posts', async(req, res) => {
+    try {
+        console.log("get posts request has arrived");
+        const posts = await pool.query(
+            "SELECT * FROM posttable"
+        );
+        res.json(posts.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 // signup a user
 app.post('/auth/signup', async(req, res) => {
     try {

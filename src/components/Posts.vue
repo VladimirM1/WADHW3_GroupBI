@@ -1,4 +1,89 @@
 <template>
+  <div class="flex-container">
+      <div v-for="post in posts" :key="post.id">
+          <router-link :to="'/apost/' + post.id">
+              <div style="display:flex; justify-content: end">
+                  <span class="date"> {{ post.date }} </span>
+              </div>
+
+              <div style="display:flex; justify-content: begin">
+                  <span class="body"> {{ post.body }} </span>
+              </div>
+          </router-link>
+      </div>
+      
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'Posts',
+  data() {
+  return {
+  posts: [],
+  };
+},
+methods: {
+  fetchPosts() {
+  fetch(`http://localhost:3000/api/posts/`)
+      .then((response) => response.json())
+      .then((data) => (this.posts = data))
+      .catch((err) => console.log(err.message));
+  },
+},
+mounted() {
+  this.fetchPosts();
+  console.log("mounted");
+},
+      
+  }
+</script>
+
+<style scoped>
+
+* {
+  font-family: sans-serif;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.item {
+  text-align: right;
+  background: rgb(189, 212, 199);
+  margin-bottom: 5px;
+  padding: 3px 5px;
+  border-radius: 10px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+}
+
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 50%;
+  margin:auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  line-height: 25px;
+  font-size: 17px;
+  border-radius: 10px;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  padding-top: 1.5%;
+padding-bottom: 1.5%;
+}
+</style>
+
+
+<!-- <template> 
     <div id="flex-container" class="posts-container">
       <ul>
         <li class="post" v-for="post in PostsList" :key="post.id">
@@ -121,4 +206,4 @@
   }
   
   </style>
-  
+    -->

@@ -22,7 +22,7 @@ footer {
   font-size: 17px;
   padding-top:5px;
   padding-bottom:5px;
-  bottom:0;
+  bottom:-20px;
   margin-bottom: 10px;
   position: fixed;
   width: 100%;
