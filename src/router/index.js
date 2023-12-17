@@ -3,6 +3,7 @@ import SignUpView from '../views/SignUpView.vue'
 import LoginView from '../views/LoginView.vue'
 import PostView from '../views/PostView.vue'
 import AddPostView from '../views/AddPostView.vue'
+import APostView from '../views/APostView.vue'
 import AboutView from '../views/AboutView.vue'
 import auth from "@/auth";
 const routes = [
@@ -43,6 +44,21 @@ const routes = [
       }
   }
   },
+
+  {
+    path: '/aPost/:id',
+    name: 'aPost',
+    component: APostView,
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+        next('/login')
+      } else {
+        next();
+      }
+    }
+  },
+
   {
     path: '/login',
     name: 'login',

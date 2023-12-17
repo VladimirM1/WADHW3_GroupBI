@@ -112,6 +112,46 @@ app.post('/auth/signup', async(req, res) => {
     }
 });
 
+app.get('/api/posts/:id', async(req, res) => {
+    try {
+        console.log("get a post with route parameter  request has arrived");
+        const { id } = req.params;
+        const posts = await pool.query(
+            "SELECT * FROM posttable WHERE id = $1", [id]
+        );
+        res.json(posts.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.put('/api/posts/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        const post = req.body;
+        console.log("update request has arrived");
+        const updatepost = await pool.query(
+            "UPDATE posttable SET (body, date) = ($2, $3) WHERE id = $1 RETURNING*", [id, post.body, post.date]
+        );
+        res.json(updatepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.delete('/api/posts/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        console.log("delete a post request has arrived");
+        const deletepost = await pool.query(
+            "DELETE FROM posttable WHERE id = $1 RETURNING*", [id]
+        );
+        res.json(deletepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 app.post('/auth/login', async(req, res) => {
     try {
         console.log("a login request has arrived");
